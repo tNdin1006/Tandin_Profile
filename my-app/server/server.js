@@ -12,8 +12,9 @@ app.use(cors({
     "http://localhost:3000", 
     "https://tandin-profile.vercel.app" // Update this to your actual Vercel URL later
   ],
-  methods: ["GET", "POST", "DELETE"],
-  credentials: true
+  methods: ["GET", "POST", "DELETE", "OPTIONS"],
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(express.json());
 
