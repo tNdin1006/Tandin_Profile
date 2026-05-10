@@ -5,13 +5,18 @@ import { FiMail, FiGithub, FiLinkedin, FiInstagram, FiSend } from 'react-icons/f
 
 const API_BASE_URL = window.location.hostname === "localhost" 
   ? "http://localhost:5000" 
-  : "https://tandin-api.vercel.app"; // Update this after deploying backend
+  : "https://tandin-api.vercel.app";
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // --- DEBUG ALERT ---
+    // If you don't see this alert, the function isn't being called at all.
+    alert("System: Submit function triggered!"); 
+
     try {
       const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: 'POST',
@@ -29,10 +34,17 @@ const Contact = () => {
         });
         setFormData({ name: '', email: '', message: '' });
       } else {
+        const errorData = await response.json();
+        console.error("Server Error:", errorData);
         throw new Error();
       }
     } catch (error) {
-      Swal.fire({ title: 'Error!', text: 'Could not connect to server.', icon: 'error' });
+      console.error("Fetch Error:", error);
+      Swal.fire({ 
+        title: 'Error!', 
+        text: 'Could not connect to server. Check Console for details.', 
+        icon: 'error' 
+      });
     }
   };
 
@@ -76,6 +88,8 @@ const Contact = () => {
         <div className="contact-grid">
           <motion.div className="contact-form-card" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}>
             <h3 className="connect-title">Send a Message</h3>
+            
+            {/* The form tag MUST have onSubmit */}
             <form onSubmit={handleSubmit} className="modern-form">
               <div className="input-group">
                 <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required />
@@ -86,7 +100,11 @@ const Contact = () => {
               <div className="input-group">
                 <textarea name="message" placeholder="Message" rows="5" value={formData.message} onChange={handleChange} required></textarea>
               </div>
-              <button type="submit" className="modern-submit-btn">Send Message <FiSend /></button>
+              
+              {/* The button MUST have type="submit" */}
+              <button type="submit" className="modern-submit-btn">
+                Send Message <FiSend style={{ marginLeft: '8px' }} />
+              </button>
             </form>
           </motion.div>
 
