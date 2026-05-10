@@ -102,7 +102,12 @@ const Contact = () => {
               </div>
               
               {/* The button MUST have type="submit" */}
-              <button type="submit" className="modern-submit-btn">
+              <button 
+                type="button" // Changed from 'submit' to 'button' to avoid conflicts
+                onClick={handleSubmit} 
+                className="modern-submit-btn"
+                style={{ zIndex: 10, position: 'relative' }} // Forces the button to the front
+              >
                 Send Message <FiSend style={{ marginLeft: '8px' }} />
               </button>
             </form>
