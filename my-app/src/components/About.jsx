@@ -65,7 +65,7 @@ const About = () => {
               <div className="education-item">
                 <h5>Bachelor's in Computer Appication</h5>
                   <a 
-                      href="https://www.srmist.edu.in/" 
+                      href="https://srmus.ac.in/" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       style={{ textDecoration: "none", color: "inherit" }}
