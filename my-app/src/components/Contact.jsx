@@ -11,12 +11,8 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault(); // Prevents page reload
     
-    // --- DEBUG ALERT ---
-    // If you don't see this alert, the function isn't being called at all.
-    alert("System: Submit function triggered!"); 
-
     try {
       const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: 'POST',
@@ -34,15 +30,13 @@ const Contact = () => {
         });
         setFormData({ name: '', email: '', message: '' });
       } else {
-        const errorData = await response.json();
-        console.error("Server Error:", errorData);
-        throw new Error();
+        throw new Error("Failed to send");
       }
     } catch (error) {
       console.error("Fetch Error:", error);
       Swal.fire({ 
         title: 'Error!', 
-        text: 'Could not connect to server. Check Console for details.', 
+        text: 'Could not connect to server. Please try again later.', 
         icon: 'error' 
       });
     }
@@ -89,7 +83,6 @@ const Contact = () => {
           <motion.div className="contact-form-card" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}>
             <h3 className="connect-title">Send a Message</h3>
             
-            {/* The form tag MUST have onSubmit */}
             <form onSubmit={handleSubmit} className="modern-form">
               <div className="input-group">
                 <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required />
@@ -101,12 +94,10 @@ const Contact = () => {
                 <textarea name="message" placeholder="Message" rows="5" value={formData.message} onChange={handleChange} required></textarea>
               </div>
               
-              {/* The button MUST have type="submit" */}
               <button 
-                type="button" // Changed from 'submit' to 'button' to avoid conflicts
-                onClick={handleSubmit} 
+                type="submit" 
                 className="modern-submit-btn"
-                style={{ zIndex: 10, position: 'relative' }} // Forces the button to the front
+                style={{ zIndex: 10, position: 'relative' }}
               >
                 Send Message <FiSend style={{ marginLeft: '8px' }} />
               </button>
