@@ -1,40 +1,19 @@
 export const contactInfo = {
   personal: {
-    email: 'sonam.zangmo@gcit.edu.bt',
-    phone: '+975 17XX-XXXX',
-    location: 'Gyalpozhing, Mongar, Bhutan',
-    education: 'Gyalpozhing College of Information Technology',
-    course: 'BSc Computer Science (Expected 2025)'
+    email: 'tandiny_wangchuk@srmus.edu.in',
+    phone: '+91 85XX-XXXX',
+    education: 'SRM University, Sikkim',
+    course: 'Bachelor in Computer Application'
   },
   social: [
     {
       platform: 'GitHub',
-      username: 'sonamzangmo',
-      url: 'https://github.com/sonamzangmo',
+      username: 'tNdin1006',
+      url: 'https://github.com/tNdin1006',
       icon: 'github',
       color: '#333333'
     },
-    {
-      platform: 'LinkedIn',
-      username: 'sonam-zangmo',
-      url: 'https://linkedin.com/in/sonam-zangmo',
-      icon: 'linkedin',
-      color: '#0077B5'
-    },
-    {
-      platform: 'Behance',
-      username: 'sonamzangmo',
-      url: 'https://behance.net/sonamzangmo',
-      icon: 'behance',
-      color: '#1769FF'
-    },
-    {
-      platform: 'Dribbble',
-      username: 'sonamzangmo',
-      url: 'https://dribbble.com/sonamzangmo',
-      icon: 'dribbble',
-      color: '#EA4C89'
-    }
+   
   ],
   availability: {
     status: 'Available for opportunities',
