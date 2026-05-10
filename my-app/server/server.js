@@ -8,13 +8,9 @@ const app = express();
 
 // Middleware - Configured for Production
 app.use(cors({
-  origin: [
-    "http://localhost:3000", 
-    "https://tandin-profile.vercel.app" // Update this to your actual Vercel URL later
-  ],
+  origin: "*", // This allows EVERYTHING. Use this just to test.
   methods: ["GET", "POST", "DELETE", "OPTIONS"],
-  credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization"]
+  credentials: true
 }));
 app.use(express.json());
 
